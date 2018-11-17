@@ -1279,7 +1279,7 @@ img {
 
 .product-topbar {
   position: relative;
-  z-index: 100;
+  z-index: 1;
   margin-bottom: 40px; }
   .product-topbar .total-products p {
     margin-bottom: 0;

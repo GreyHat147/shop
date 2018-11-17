@@ -60,10 +60,18 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <!-- User Login Info -->
-                <div class="user-login-info">
-                    <a href="#ex1" rel="modal:open""><img src="./assets/img/core-img/user.svg" alt=""></a>
-                </div>
+                <?php if(!isset($_SESSION['valid'])): ?>
+                    <!-- User Login Info -->
+                    <div class="user-login-info">
+                        <a href="#openModal" rel="modal:open""><img src="./assets/img/core-img/user.svg" alt=""></a>
+                    </div>
+                <?php endif; ?>
+                <?php if(isset($_SESSION['valid']) &&  $_SESSION['valid']): ?>
+                    <!-- User Login Info -->
+                    <div class="user-login-info">
+                        <a href="?c=Login&a=logout">Salir</a>
+                    </div>
+                <?php endif; ?>
             </div>
 
         </div>
@@ -71,35 +79,111 @@
     <!-- ##### Header Area End ##### -->
 
     <!-- Modal HTML embedded directly into document -->
-    <div id="ex1" class="modal">
-        <div class="checkout_details_area mt-50 clearfix">
-            <form action="?c=Login&a=login" method="post">
-                <!-- ##### Breadcumb Area Start ##### -->
-                <div class="breadcumb_area bg-img" style="background-image: url(./assets/img/bg-img/breadcumb.jpg);">
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center">
-                            <div class="col-12">
-                                <div class="page-title text-center">
-                                    <h2>Login</h2>
+    <div id="openModal" class="modal" style="margin-top: 100px;">
+        <ul class="tab-group">
+            <li class="tab active"><a href="#signup">Registrarse</a></li>
+            <li class="tab"><a href="#login">Log In</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="login">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <form action="?c=Login&a=login" method="post">
+                        <!-- ##### Breadcumb Area Start ##### -->
+                        <div class="breadcumb_area bg-img" style="background-image: url(./assets/img/bg-img/breadcumb.jpg);">
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    <div class="col-12">
+                                        <div class="page-title text-center">
+                                            <h2>Login</h2>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <!-- ##### Breadcumb Area End ##### -->
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" value="" required autocomplete="off" name="username">
+                            </div>
+                            <div class="col-12" style="margin-bottom: 15px">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" value="" required autocomplete="off" name="password">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn essence-btn">Login</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <!-- ##### Breadcumb Area End ##### -->
-                <div class="row">
-                    <div class="col-12">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" value="" required autocomplete="off" name="username">
-                    </div>
-                    <div class="col-12" style="margin-bottom: 15px">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" value="" required autocomplete="off" name="password">
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn essence-btn">Login</button>
-                    </div>
+            </div>
+    
+            <div id="signup">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <form action="?c=Login&a=signup" method="post">
+                        <!-- ##### Breadcumb Area Start ##### -->
+                        <div class="breadcumb_area bg-img" style="background-image: url(./assets/img/bg-img/breadcumb.jpg);">
+                            <div class="container h-100">
+                                <div class="row h-100 align-items-center">
+                                    <div class="col-12">
+                                        <div class="page-title text-center">
+                                            <h2>Registrarse</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ##### Breadcumb Area End ##### -->
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="usernameRegister" value="" required autocomplete="off" name="username">
+                            </div>
+                            <div class="col-12">
+                                <label for="first_name">Nombres</label>
+                                <input type="text" class="form-control" id="first_name" value="" required autocomplete="off" name="first_name">
+                            </div>
+                            <div class="col-12">
+                                <label for="last_name">Apellidos</label>
+                                <input type="text" class="form-control" id="last_name" value="" required autocomplete="off" name="last_name">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="document_type">Tipo de documento <span>*</span></label>
+                                <select class="w-100" id="document_type" name="document_type">
+                                    <option value="CC">Cedula de ciudadania</option>
+                                    <option value="CE">Cedula de extrangeria</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="document_number">Numero de documento</label>
+                                <input type="number" class="form-control" id="document_number" value="" required autocomplete="off" name="document_number">
+                            </div>
+                            <div class="col-12">
+                                <label for="phone_number">Telefono</label>
+                                <input type="number" class="form-control" id="phone_number" value="" required autocomplete="off" name="phone_number">
+                            </div>
+                            <div class="col-12">
+                                <label for="city">Ciudad</label>
+                                <input type="text" class="form-control" id="city" value="" required autocomplete="off" name="city">
+                            </div>
+                            <div class="col-12">
+                                <label for="address">Dirección</label>
+                                <input type="text" class="form-control" id="address" value="" required autocomplete="off" name="address">
+                            </div>
+                            <div class="col-12">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" value="" required autocomplete="off" name="email">
+                            </div>
+                            <div class="col-12" style="margin-bottom: 15px">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="passwordRegister" value="" required autocomplete="off" name="password">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn essence-btn">Registrarse</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>

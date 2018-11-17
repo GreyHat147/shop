@@ -23,4 +23,29 @@ class User {
 		}
     }
 
+    public function create($data) {
+        try {
+            $sql = "INSERT INTO users (username,password,first_name,last_name,document_type,document_number,phone_number,city, address, email) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            return $this->pdo->prepare($sql)
+                ->execute(
+                    array(
+                        $data["username"],
+                        md5($data["password"]), 
+                        $data["first_name"],
+                        $data["last_name"],
+                        $data["document_type"],
+                        $data["document_number"],
+                        $data["phone_number"],
+                        $data["city"],
+                        $data["address"],
+                        $data["email"],
+                    )
+                );
+		} catch(Exception $e) {
+			die($e->getMessage());
+		}
+    }
+
 }

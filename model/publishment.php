@@ -52,6 +52,7 @@ class Publishment {
 
     public function create($data) {
         try {
+		echo "ID USER => " . $_SESSION['id'];
 		$sql = "INSERT INTO publishments (name,vehicle_type,brand,model,type,status,price, accesories, city, thumbnail, id_user) 
 		        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -68,7 +69,7 @@ class Publishment {
                     $data["accesories"],
                     $data["city"],
                     $data["thumbnail"],
-                    1,
+                    $_SESSION['id'],
                 )
 			);
 		} catch (Exception $e) {

@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="city">Ciudad</label>
-                                <input type="text" class="form-control" id="city" value="" name="city">
+                                <input type="text" class="form-control" id="cityPublish" value="" name="city">
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="thumbnail">Url de la Imagen</label>
