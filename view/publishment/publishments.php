@@ -46,13 +46,9 @@
                         <p class="widget-title2 mb-30">Marca</p>
                         <div class="widget-desc">
                             <ul>
-                                <li><a href="?c=Publishment&a=filterBy&field=brand&value='BMW'">BMW</a></li>
-                                <li><a href="#">Chevrolet</a></li>
-                                <li><a href="#">Mazda</a></li>
-                                <li><a href="#">Kawasaki</a></li>
-                                <li><a href="#">Yamaha</a></li>
-                                <li><a href="#">Honda</a></li>
-                                <li><a href="#">Susuki</a></li>
+                                <?php foreach($this->model->getBrands() as $brand): ?>
+                                    <li><a href="?c=Publishment&a=filterBy&field=brand&value='<?php echo $brand->brand ?>'"><?php echo $brand->brand ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>
@@ -74,7 +70,7 @@
 
                     <div class="row">
 
-                        <?php foreach($this->model->getPublishments() as $publishment): ?>
+                        <?php foreach($this->publishments as $key=>$publishment): ?>
                             <!-- Single Product -->
                             <div class="col-12 col-sm-12 col-lg-6"> 
                                 <div class="single-product-wrapper">
@@ -97,7 +93,7 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Comprar</a>
+                                                <a href="#buyModal" rel="modal:open" class="btn essence-btn">Comprar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -112,6 +108,15 @@
 </section>
 <!-- ##### Shop Grid Area End ##### -->
 
-
-<!-- Link to open the modal -->
-<!-- <p><a href="#ex1" rel="modal:open">Open Modal</a></p> -->
+    
+<div id="buyModal" class="modal" style="margin-top: 100px;">
+    <h4>Esta seguro que desea comprar este vehiculo?</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="?c=Login&a=logout" class="btn essence-btn">Si</a>
+        </div>
+        <div class="col-md-6">
+            <a rel="modal:close" class="btn essence-btn">No</a>
+        </div>
+    </div>
+</div>

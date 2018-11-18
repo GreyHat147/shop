@@ -63,7 +63,7 @@
                 <?php if(!isset($_SESSION['valid'])): ?>
                     <!-- User Login Info -->
                     <div class="user-login-info">
-                        <a href="#openModal" rel="modal:open""><img src="./assets/img/core-img/user.svg" alt=""></a>
+                        <a href="#openModal" rel="modal:open"><img src="./assets/img/core-img/user.svg" alt=""></a>
                     </div>
                 <?php endif; ?>
                 <?php if(isset($_SESSION['valid']) &&  $_SESSION['valid']): ?>

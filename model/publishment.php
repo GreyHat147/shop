@@ -2,15 +2,6 @@
 class Publishment {
 	private $pdo;
     
-   /*  public $id;
-    public $Nombre;
-    public $Apellido;
-    public $Sexo;
-    public $FechaRegistro;
-    public $FechaNacimiento;
-    public $Foto;
-    public $Correo; */
-
 	public function __CONSTRUCT() {
 		try {
 			$this->pdo = Database::StartUp();     
@@ -33,7 +24,6 @@ class Publishment {
     }
     
     public function filterBy($field, $value) {
-        echo $field . " = " .  $value;
         try {
 			$result = array();
 
@@ -48,7 +38,19 @@ class Publishment {
 		} catch(Exception $e) {
 			die($e->getMessage());
 		}
-    }
+	}
+	
+	public function getBrands() {
+		try {
+			$result = array();
+
+			$stm = $this->pdo->prepare("SELECT DISTINCT brand FROM publishments");
+			$stm->execute();
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		} catch(Exception $e) {
+			die($e->getMessage());
+		}
+	}
 
     public function create($data) {
         try {
