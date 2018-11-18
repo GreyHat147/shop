@@ -89,13 +89,15 @@
                                         <h6><?php echo $publishment->name; ?></h6>
                                         <p class="product-price"> $<?php echo $publishment->price; ?></p>
 
+                                        <?php if(isset($_SESSION['valid']) &&  $_SESSION['valid']): ?>
                                         <!-- Hover Content -->
-                                        <div class="hover-content">
-                                            <!-- Add to Cart -->
-                                            <div class="add-to-cart-btn">
-                                                <a href="#buyModal" rel="modal:open" class="btn essence-btn">Comprar</a>
+                                            <div class="hover-content">
+                                                <!-- Add to Cart -->
+                                                <div class="add-to-cart-btn">
+                                                    <a href="#buyModal" rel="modal:open" class="btn essence-btn">Comprar</a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
